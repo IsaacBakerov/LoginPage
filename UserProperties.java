@@ -1,9 +1,12 @@
+import java.lang.reflect.Array;
+import java.util.*;
+
 public class UserProperties {
     private String id;
     private String password;
     private String email;
-
     private String bio;
+    private ArrayList<String> inbox = new ArrayList<>();
 
     public UserProperties(String id, String password, String email) {
         this.id = id;
@@ -11,6 +14,7 @@ public class UserProperties {
         this.email = email;
     }
 
+    //Setters
     public void setId(String id) {
         this.id = id;
     }
@@ -27,6 +31,11 @@ public class UserProperties {
         this.bio = bio;
     }
 
+    public void setInbox(ArrayList<String> inbox) {
+        this.inbox = inbox;
+    }
+
+    //Getters
     public String getId() {
         return id;
     }
@@ -41,5 +50,9 @@ public class UserProperties {
 
     public String getBio() {
         return bio;
+    }
+
+    public ArrayList<String> getInbox() {
+        return inbox;
     }
 }

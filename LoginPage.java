@@ -2,12 +2,15 @@ public class LoginPage {
     public static void loginPage(int currentPropIndex) {
         while (true) {
             System.out.println("""
+                    \n
                     What would you like to do? :
                     1. Change username
                     2. Change password
                     3. Show bio
                     4. Update your bio
-                    5. Log out
+                    5. Show inbox
+                    6. Send a message
+                    7. Log out
                     """);
             int input = 0;
             try {
@@ -24,6 +27,10 @@ public class LoginPage {
             } else if (input == 4) {
                 updateBio(currentPropIndex);
             } else if (input == 5) {
+                showInbox(currentPropIndex);
+            } else if (input == 6) {
+                sendMessage(currentPropIndex);
+            } else if (input == 7) {
                 System.out.println("LOGGING OUT");
                 break;
             } else {
@@ -123,6 +130,41 @@ public class LoginPage {
                 System.out.println("No such user found, try again - ");
             } else {
                 break;
+            }
+        }
+    }
+
+    public static void showInbox(int currentPropIndex) {
+        int num = 1;
+        for (String message : Main.propertiesList.get(currentPropIndex).getInbox()) {
+            System.out.print(num + ". " + message + "\n");
+            num++;
+        }
+    }
+
+    public static void sendMessage(int currentPropIndex) {
+        while (true) {
+            System.out.println("Whom to send message? (Enter their username): ");
+            String username = Main.sc.nextLine();
+            boolean userExist = false;
+            int receiverIndex = 0;
+
+            for (UserProperties property : Main.propertiesList) {
+                if (property.getId().equals(username)) {
+                    userExist = true;
+                    receiverIndex = Main.propertiesList.indexOf(property);
+                    break;
+                }
+            }
+
+            if (userExist) {
+                System.out.println("Enter the message: ");
+                String message = Main.sc.nextLine();
+                String wholeMessage = "Sender: " + Main.propertiesList.get(currentPropIndex).getId() + "\n" + message;
+                Main.propertiesList.get(receiverIndex).getInbox().add(wholeMessage);
+                break;
+            } else {
+                System.out.println("User doesn't exist, try again - ");
             }
         }
     }

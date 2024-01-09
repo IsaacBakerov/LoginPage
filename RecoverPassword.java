@@ -17,7 +17,8 @@ public class RecoverPassword {
                 System.out.print("Enter your username: ");
                 String username = Main.sc.nextLine();
                 if (Main.propertiesList.get(currentPropIndex).getId().equals(username)) {
-                    System.out.println("\nThis is your password: " + Main.propertiesList.get(currentPropIndex).getPassword());
+                    System.out.println("\nThis is your password: " + PasswordOperations.decrypt(Main.propertiesList.get(currentPropIndex).getPassword()));
+                    //System.out.println("\nThis is your password: " + Main.propertiesList.get(currentPropIndex).getPassword());
                     break;
                 } else {
                     System.out.println("Wrong. Try again - ");

@@ -48,7 +48,7 @@ public class RegisterUser {
             }
 
             if (haveUppercase && moreThanEight) {
-                return password.toString();
+                return PasswordOperations.encrypt(password);
             } else if (!haveUppercase && moreThanEight) {
                 System.out.println("Password doesn't include an uppercase letter - ");
             } else if (haveUppercase && !moreThanEight) {

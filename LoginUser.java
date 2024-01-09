@@ -21,7 +21,7 @@ public class LoginUser {
             if (emailExist) {
                 System.out.print("Enter your password: ");
                 String password = Main.sc.nextLine();
-                if (Main.propertiesList.get(currentPropIndex).getPassword().equals(password)) {
+                if (PasswordOperations.decrypt(Main.propertiesList.get(currentPropIndex).getPassword()).equals(password)) {
                     System.out.println("\nWelcome, " + Main.propertiesList.get(currentPropIndex).getId() + ". Login successful.");
                     LoginPage.loginPage(currentPropIndex);
                     break;
